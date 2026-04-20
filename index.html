@@ -1,841 +1,659 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resist Gravity — Strength Training</title>
-  <meta name="description" content="Strength training for beginners at resistgravity.training. In-gym sessions and online coaching built around sustainable programming, better technique, and practical strength for every body." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resist Gravity — Strength Training for Life</title>
+  <meta name="description" content="Evidence-based strength training for people who want to stay strong, sharp, and independent for decades to come. In-person in Truckee, CA and online.">
   <style>
-    :root {
-      --bg: #111316;
-      --bg-soft: #171a1f;
-      --panel: rgba(27, 30, 35, 0.94);
-      --panel-2: rgba(32, 36, 42, 0.98);
-      --text: #f3eee6;
-      --muted: #c8c0b3;
-      --steel: #8c9199;
-      --line: rgba(182, 191, 204, 0.14);
-      --iron: #c07a43;
-      --iron-deep: #72401a;
-      --neon: #79d7c3;
-      --danger: #ff6f79;
-      --glow: 0 0 18px rgba(121, 215, 195, 0.12);
-      --iron-glow: 0 0 18px rgba(192, 122, 67, 0.1);
-      --shadow: 0 24px 54px rgba(0, 0, 0, 0.28);
-      --radius: 18px;
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    /* === RESET & BASE === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      margin: 0;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 17px;
-      background:
-        radial-gradient(circle at top right, rgba(121, 215, 195, 0.08), transparent 24%),
-        radial-gradient(circle at 18% 0%, rgba(192, 122, 67, 0.1), transparent 26%),
-        linear-gradient(180deg, #121418 0%, #14181d 34%, #101317 100%);
-      color: var(--text);
-      line-height: 1.72;
-      min-height: 100vh;
-      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fafafa;
+      -webkit-font-smoothing: antialiased;
     }
-
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -2;
-    }
-
-    body::before {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.02), transparent 24%),
-        repeating-linear-gradient(
-          115deg,
-          rgba(255,255,255,0.018) 0,
-          rgba(255,255,255,0.018) 2px,
-          transparent 2px,
-          transparent 14px
-        );
-      opacity: 0.22;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,0.9), transparent 92%);
-    }
-
-    body::after {
-      background:
-        radial-gradient(circle at 50% 0%, rgba(121, 215, 195, 0.08), transparent 35%),
-        radial-gradient(circle at 50% 100%, rgba(192, 122, 67, 0.06), transparent 30%);
-      opacity: 0.65;
-      z-index: -1;
-    }
-
+    img { max-width: 100%; height: auto; display: block; }
     a { color: inherit; text-decoration: none; }
 
-    .wrap {
-      width: min(var(--max), calc(100% - 2rem));
+    /* === LAYOUT === */
+    .container {
+      max-width: 720px;
       margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .container--wide {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
     }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: rgba(17, 20, 24, 0.82);
-      border-bottom: 1px solid rgba(182, 191, 204, 0.11);
-    }
+    /* === TYPOGRAPHY === */
+    h1 { font-size: 2.8rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; }
+    h2 { font-size: 1.8rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    h3 { font-size: 1.2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.5rem; }
+    p { margin-bottom: 1rem; }
+    .lead { font-size: 1.15rem; color: #444; }
+    .small { font-size: 0.85rem; color: #777; }
 
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1rem 0;
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
-
-    .eyebrow,
-    .mini-label {
-      font-family: 'DM Sans', sans-serif;
-      letter-spacing: 0.06em;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--neon);
-    }
-
-    .brand strong {
-      font-family: 'Oswald', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-size: 1.5rem;
-      line-height: 1;
-    }
-
-    .brand span:last-child {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .nav a {
-      color: #d7d0c5;
-      font-size: 1rem;
-    }
-
-    .nav a:hover { color: var(--text); }
-
-    .btn,
-    button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.65rem;
-      border: 1px solid transparent;
-      border-radius: 12px;
-      padding: 0.92rem 1.3rem;
-      font-weight: 700;
-      transition: 180ms ease;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: linear-gradient(180deg, rgba(121, 215, 195, 0.14), rgba(121, 215, 195, 0.08)), #1f2a2a;
-      color: var(--text);
-      border-color: rgba(121, 215, 195, 0.3);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.16), var(--glow);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      border-color: rgba(121, 215, 195, 0.48);
-      box-shadow: 0 10px 22px rgba(0,0,0,0.18), 0 0 14px rgba(121, 215, 195, 0.12);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.02);
-      color: var(--text);
-      border-color: rgba(192, 122, 67, 0.38);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.12), var(--iron-glow);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-1px);
-      border-color: rgba(200, 119, 46, 0.68);
-    }
-
+    /* === HERO === */
     .hero {
-      padding: 4.2rem 0 2rem;
-      position: relative;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 2rem;
-      align-items: stretch;
-    }
-
-    .hero-copy,
-    .hero-side,
-    .panel,
-    .quote-panel,
-    .booking-box,
-    .footer-note {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008)),
-        linear-gradient(145deg, rgba(121,215,195,0.02), transparent 28%),
-        var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.04),
-        var(--shadow);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #0d0d0d;
+      color: #fff;
       position: relative;
       overflow: hidden;
     }
-
-    .hero-copy::before,
-    .hero-side::before,
-    .panel::before,
-    .quote-panel::before,
-    .booking-box::before,
-    .footer-note::before {
-      content: "";
+    .hero::before {
+      content: '';
       position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.035), transparent 20%);
-      pointer-events: none;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 30% 80%, rgba(180,140,80,0.08) 0%, transparent 60%);
     }
-
-    .hero-copy {
-      padding: 2.3rem;
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      padding: 4rem 0;
     }
-
-    .hero-title {
-      font-family: 'Oswald', sans-serif;
-      text-transform: uppercase;
-      font-size: clamp(2.85rem, 6.5vw, 5.3rem);
-      line-height: 0.94;
-      letter-spacing: 0.03em;
-      margin: 0.55rem 0 1rem;
-      text-wrap: balance;
-    }
-
-    .hero-title .accent {
-      color: var(--neon);
-      text-shadow: 0 0 9px rgba(121, 215, 195, 0.16);
-    }
-
-    .subhead {
-      font-size: 1.18rem;
-      max-width: 45rem;
-      color: #ebe2d4;
-      margin-bottom: 0.9rem;
-    }
-
-    .hero-reassurance {
-      margin: 0 0 1.4rem;
-      max-width: 42rem;
-      padding-left: 0.95rem;
-      border-left: 3px solid rgba(192, 122, 67, 0.55);
-      color: #d7cdbf;
+    .hero__tagline {
       font-size: 1rem;
-    }
-
-    .hero-points {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.85rem;
-      margin: 1.6rem 0 2rem;
-    }
-
-    .point {
-      padding: 1rem 1.05rem;
-      border: 1px solid rgba(121, 215, 195, 0.12);
-      border-radius: 14px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.008));
-    }
-
-    .point strong {
-      display: block;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--neon);
-      margin-bottom: 0.4rem;
+      letter-spacing: 0.15em;
+      color: #b48c50;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+    .hero h1 {
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+    }
+    .hero h1 span {
+      display: block;
+      color: #b48c50;
+    }
+    .hero__subtitle {
+      font-size: 1.15rem;
+      color: #ccc;
+      max-width: 480px;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .hero__location {
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: 1.5rem;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      align-items: center;
+    /* === BUTTONS === */
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+    .btn--primary {
+      background: #b48c50;
+      color: #0d0d0d;
+    }
+    .btn--primary:hover {
+      background: #c9a060;
+      transform: translateY(-1px);
+    }
+    .btn--outline {
+      background: transparent;
+      color: #b48c50;
+      border: 2px solid #b48c50;
+    }
+    .btn--outline:hover {
+      background: #b48c50;
+      color: #0d0d0d;
+    }
+    .btn--dark {
+      background: #1a1a1a;
+      color: #fff;
+    }
+    .btn--dark:hover {
+      background: #333;
+      transform: translateY(-1px);
+    }
+    .btn--small {
+      padding: 0.6rem 1.4rem;
+      font-size: 0.9rem;
     }
 
-    .hero-side {
-      padding: 1.4rem;
+    /* === SECTIONS === */
+    .section {
+      padding: 5rem 0;
+    }
+    .section--dark {
+      background: #0d0d0d;
+      color: #fff;
+    }
+    .section--warm {
+      background: #f5f0e8;
+    }
+    .section--gray {
+      background: #f0f0f0;
+    }
+
+    /* === PROBLEM SECTION === */
+    .problem__stat {
+      font-size: 4rem;
+      font-weight: 800;
+      color: #b48c50;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .problem__label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #999;
+      margin-bottom: 2rem;
+    }
+
+    /* === EVIDENCE GRID === */
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 640px) {
+      .evidence-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .evidence-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+    }
+    .evidence-card__number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #b48c50;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .evidence-card__title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .evidence-card__text {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 0;
+    }
+    .evidence-card__cite {
+      font-size: 0.75rem;
+      color: #999;
+      margin-top: 0.75rem;
+      font-style: italic;
+    }
+
+    /* === ABOUT === */
+    .about {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 2rem;
     }
-
-    .steel-plate {
-      border-radius: 14px;
-      padding: 1.35rem;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-        linear-gradient(145deg, rgba(140, 145, 153, 0.12), rgba(45, 49, 55, 0.1) 42%, rgba(17,19,23,0.45)),
-        #161a20;
-      border: 1px solid rgba(192,122,67,0.16);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -8px 22px rgba(0,0,0,0.22);
-      position: relative;
-    }
-
-    .steel-plate::before,
-    .steel-plate::after {
-      content: "";
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #8b9198, #39404b 78%);
-      border: 1px solid rgba(255,255,255,0.06);
-      top: 12px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-      opacity: 0.5;
-    }
-
-    .steel-plate::before { left: 12px; }
-    .steel-plate::after { right: 12px; }
-
-    .module-title {
-      margin: 0 0 0.8rem;
-      font-family: 'DM Sans', sans-serif;
-      letter-spacing: 0.03em;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--iron);
-    }
-
-    .signal {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .signal span {
-      color: #d4ccbf;
-    }
-
-    .signal:last-child { border-bottom: none; }
-
-    .signal strong {
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    section {
-      padding: 1.5rem 0;
-    }
-
-    .section-head {
-      max-width: 48rem;
-      margin-bottom: 1.5rem;
-    }
-
-    h2 {
-      margin: 0.2rem 0 0.65rem;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-weight: 800;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.02;
-      letter-spacing: -0.03em;
-    }
-
-    .section-head p,
-    .panel p,
-    .quote-panel p,
-    .booking-box p,
-    .footer-note p {
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .quote-panel {
-      padding: 1.8rem;
-      border-color: rgba(200,119,46,0.22);
-    }
-
-    .quote {
-      margin: 0;
-      font-size: clamp(1.15rem, 2vw, 1.5rem);
-      color: #f4f0e9;
-    }
-
-    .quote strong { color: var(--neon); }
-
-    .grid-2,
-    .offer-grid,
-    .trust-grid,
-    .booking-grid {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .offer-grid,
-    .trust-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .grid-2,
-    .booking-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .panel {
-      padding: 1.5rem;
-    }
-
-    .panel h3 {
-      margin: 0.3rem 0 0.65rem;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 1.26rem;
-      font-weight: 700;
-      line-height: 1.15;
-      color: var(--text);
-    }
-
-    ul {
-      margin: 1rem 0 0;
-      padding-left: 1.15rem;
-      color: #d8def0;
-    }
-
-    li { margin: 0.45rem 0; }
-
-    .stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-top: 1.1rem;
-    }
-
-    .stat {
-      padding: 0.95rem 1rem;
-      min-width: 150px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(121,215,195,0.11);
-    }
-
-    .stat strong {
-      display: block;
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.04em;
-      color: var(--iron);
-      margin-bottom: 0.2rem;
-    }
-
-    .metal-rule {
-      height: 6px;
-      margin: 2rem 0 0.75rem;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(192,122,67,0), rgba(192,122,67,0.5), rgba(121,215,195,0.45), rgba(192,122,67,0));
-      box-shadow: none;
-      opacity: 0.85;
-    }
-
-    .booking-box {
-      padding: 1.7rem;
-      min-height: 100%;
-    }
-
-    .booking-placeholder {
-      margin-top: 1rem;
-      padding: 1.25rem;
-      border-radius: 14px;
-      border: 1px dashed rgba(121, 215, 195, 0.26);
-      background: rgba(255,255,255,0.02);
-      color: var(--muted);
-    }
-
-    .footer-note {
-      padding: 1.4rem 1.6rem;
-      margin: 1.6rem 0 3rem;
-      border-color: rgba(168,85,247,0.22);
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .footer-note strong {
-      display: block;
-      font-family: 'DM Sans', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.11em;
-      color: var(--neon);
-      margin-bottom: 0.35rem;
-      font-size: 0.8rem;
-    }
-
-    .tiny {
-      font-size: 0.92rem;
-      color: var(--muted);
-    }
-
-    @media (max-width: 960px) {
-      .hero-grid,
-      .grid-2,
-      .offer-grid,
-      .trust-grid,
-      .booking-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-points {
-        grid-template-columns: 1fr;
-      }
-
-      .topbar-inner {
+    @media (min-width: 640px) {
+      .about {
+        flex-direction: row;
         align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav {
-        justify-content: flex-start;
-      }
-
-      .hero {
-        padding-top: 2rem;
       }
     }
+    .about__photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 8px;
+      background: #ddd;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 0.8rem;
+      text-align: center;
+      border: 2px dashed #ccc;
+    }
+    .about__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .about__bio p:last-child { margin-bottom: 0; }
 
-    @media (max-width: 640px) {
-      .wrap {
-        width: min(var(--max), calc(100% - 1rem));
-      }
-
-      .hero-copy,
-      .hero-side,
-      .panel,
-      .quote-panel,
-      .booking-box,
-      .footer-note {
-        border-radius: 18px;
-      }
-
-      .hero-copy {
-        padding: 1.4rem;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .btn,
-      button {
-        width: 100%;
+    /* === HOW IT WORKS === */
+    .offerings {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 640px) {
+      .offerings {
+        grid-template-columns: 1fr 1fr;
       }
     }
+    .offering {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+    }
+    .offering__icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .offering ul {
+      list-style: none;
+      margin: 1rem 0;
+    }
+    .offering li {
+      padding: 0.3rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: #444;
+      font-size: 0.95rem;
+    }
+    .offering li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #b48c50;
+      font-weight: 700;
+    }
+
+    /* === OBJECTIONS === */
+    .objection {
+      margin-bottom: 2rem;
+    }
+    .objection h3 {
+      color: #b48c50;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .objection p {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    /* === CTA SECTION === */
+    .cta-block {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .cta-block h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p {
+      color: #555;
+      font-size: 0.95rem;
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* === FOOTER === */
+    footer {
+      padding: 3rem 0;
+      text-align: center;
+      border-top: 1px solid #e5e5e5;
+      color: #999;
+      font-size: 0.85rem;
+    }
+
+    /* === DIVIDERS === */
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: #b48c50;
+      margin: 0 0 2rem 0;
+    }
+    .divider--center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* === EMAIL FORM === */
+    .email-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    @media (min-width: 480px) {
+      .email-form {
+        flex-direction: row;
+      }
+    }
+    .email-form input[type="email"] {
+      flex: 1;
+      padding: 0.9rem 1rem;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .email-form input[type="email"]:focus {
+      border-color: #b48c50;
+    }
+    .email-form button {
+      white-space: nowrap;
+    }
+
+    /* === UTILITIES === */
+    .mt-1 { margin-top: 1rem; }
+    .mt-2 { margin-top: 2rem; }
+    .mt-3 { margin-top: 3rem; }
+    .mb-1 { margin-bottom: 1rem; }
+    .mb-2 { margin-bottom: 2rem; }
+    .text-center { text-align: center; }
+    .text-gold { color: #b48c50; }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="#top">
-        <span class="eyebrow">resistgravity.training</span>
-        <strong>Resist Gravity</strong>
-        <span>Practical strength for every body</span>
-      </a>
-      <nav class="nav">
-        <a href="#approach">Approach</a>
-        <a href="#services">Services</a>
-        <a href="#trust">Why Train Here</a>
-        <a class="btn btn-primary" href="#booking">Book Now</a>
-      </nav>
+
+  <!-- ============================================ -->
+  <!-- HERO -->
+  <!-- ============================================ -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="hero__tagline">Resist Gravity</p>
+      <h1>
+        Gravity always wins.
+        <span>Unless you fight back.</span>
+      </h1>
+      <p class="hero__subtitle">
+        Strength training for people who want to stay strong, sharp, and&nbsp;independent&nbsp;— for&nbsp;decades to come.
+      </p>
+      <a href="#download" class="btn btn--primary">Get the Free Guide →</a>
+      <p class="hero__location">Truckee, CA · In-Person &amp; Online</p>
     </div>
-  </header>
+  </section>
 
-  <main id="top">
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow">Beginner-focused strength coaching</div>
-          <h1 class="hero-title">Resist <span class="accent">Gravity</span></h1>
-          <p class="subhead">
-            Strength training for beginners who want a clear plan, better technique, and sustainable progress — in the gym or online.
+  <!-- ============================================ -->
+  <!-- THE PROBLEM -->
+  <!-- ============================================ -->
+  <section class="section">
+    <div class="container">
+      <p class="problem__stat">3–8%</p>
+      <p class="problem__label">muscle mass lost per decade after age 30</p>
+      <div class="divider"></div>
+      <h2>You're losing muscle right now.</h2>
+      <p class="lead">
+        You can't feel it happening. There's no warning sign. But by 60, you've lost up to a quarter of the muscle you had at 25 — and the decline accelerates.
+      </p>
+      <p>
+        This isn't about how you look. This is about how you function.
+      </p>
+      <p>
+        Less muscle means weaker bones. Slower metabolism. More inflammation. Worse sleep. Higher risk of falls. Cognitive decline. Depression. Heart disease. Diabetes.
+      </p>
+      <p>
+        And the research is now unequivocal: <strong>muscle mass and strength are among the strongest predictors of how long — and how well — you'll live.</strong>
+      </p>
+      <p class="small">
+        Source: Westcott, <em>Current Sports Medicine Reports</em>, 2012
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- EVIDENCE -->
+  <!-- ============================================ -->
+  <section class="section section--warm">
+    <div class="container--wide">
+      <h2 class="text-center">The science is settled.</h2>
+      <div class="divider divider--center mb-2"></div>
+
+      <div class="evidence-grid">
+
+        <div class="evidence-card">
+          <p class="evidence-card__number">78%</p>
+          <p class="evidence-card__title">Lower risk of death</p>
+          <p class="evidence-card__text">
+            The strongest men had 60–78% lower all-cause mortality over 19 years — even after adjusting for age, BMI, smoking, and activity level.
           </p>
-          <p class="hero-reassurance">
-            No experience needed — just a clear place to start, practical coaching, and a plan you can actually follow.
+          <p class="evidence-card__cite">Ruiz et al., BMJ, 2008 — 8,762 men, 19-year follow-up</p>
+        </div>
+
+        <div class="evidence-card">
+          <p class="evidence-card__number">33</p>
+          <p class="evidence-card__title">Clinical trials show it fights depression</p>
+          <p class="evidence-card__text">
+            Resistance training significantly reduces depressive symptoms — with effect sizes comparable to medication. It works whether or not you have a diagnosis.
+          </p>
+          <p class="evidence-card__cite">Gordon et al., JAMA Psychiatry, 2018 — meta-analysis of 33 RCTs</p>
+        </div>
+
+        <div class="evidence-card">
+          <p class="evidence-card__number">80%</p>
+          <p class="evidence-card__title">Of your glucose uptake happens in muscle</p>
+          <p class="evidence-card__text">
+            Skeletal muscle is where insulin does its work. More muscle means better blood sugar control, lower inflammation, and a metabolism that doesn't betray you.
+          </p>
+          <p class="evidence-card__cite">Whytock & Goodpaster, Circulation Research, 2025</p>
+        </div>
+
+        <div class="evidence-card">
+          <p class="evidence-card__number">12+</p>
+          <p class="evidence-card__title">Months of cognitive benefit after stopping</p>
+          <p class="evidence-card__text">
+            Resistance training improves memory and executive function — and the effects persist long after you stop training. Leg strength alone predicts cognitive function years later.
+          </p>
+          <p class="evidence-card__cite">Liu-Ambrose et al., Arch Intern Med, 2010 — 12-month RCT</p>
+        </div>
+
+        <div class="evidence-card">
+          <p class="evidence-card__number">0.01</p>
+          <p class="evidence-card__title">Injuries per 1,000 hours of training</p>
+          <p class="evidence-card__text">
+            That's lower than running, recreational walking, or playing with your kids. The real risk is <em>not</em> training — and losing the strength that keeps you safe.
+          </p>
+          <p class="evidence-card__cite">Batterson et al., Mayo Clinic Proceedings, 2020</p>
+        </div>
+
+        <div class="evidence-card">
+          <p class="evidence-card__number">1–2×</p>
+          <p class="evidence-card__title">Per week is enough</p>
+          <p class="evidence-card__text">
+            Meta-analyses show significant health benefits from as little as 1–2 sessions per week, 30–45 minutes each. The best program is one you'll actually do.
+          </p>
+          <p class="evidence-card__cite">Radaelli et al., Sports Medicine, 2025 — 151 RCTs</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ABOUT -->
+  <!-- ============================================ -->
+  <section class="section">
+    <div class="container">
+      <h2>Your trainer</h2>
+      <div class="divider"></div>
+
+      <div class="about">
+        <!-- HEADSHOT: Replace the div below with an <img> tag -->
+        <!-- <img src="your-headshot.jpg" alt="Matt — Resist Gravity" /> -->
+        <div class="about__photo">
+          Your<br>photo<br>here
+        </div>
+
+        <div class="about__bio">
+          <p>
+            I'm Matt, and I've spent 25 years learning how the human body moves — and what it takes to keep it moving.
           </p>
           <p>
-            Welcome to the resistance against everything that would drag us down, degrade us, or make us less. Here, training is more than noise and punishment. It is a way to stand up physically, mentally, and spiritually — and rise with intention.
+            I've trained in martial arts, Modern Dance, Olympic weightlifting, Powerlifting, Strongman, and CrossFit. I've competed in adventure races, open-water swims, archery, and trail running. I've worked as a mountain guide and volunteered with Nevada County Sheriff's Search and Rescue.
           </p>
-
-          <div class="hero-points">
-            <div class="point">
-              <strong>Clarity</strong>
-              No random workouts. No wasted effort. Just a plan that makes sense.
-            </div>
-            <div class="point">
-              <strong>Technique</strong>
-              Learn how to move well, train safely, and build confidence under load.
-            </div>
-            <div class="point">
-              <strong>Strength</strong>
-              Practical, real-world strength built for actual life, not gym theater.
-            </div>
-          </div>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#booking">Book a Session</a>
-            <a class="btn btn-secondary" href="#services">See Coaching Options</a>
-          </div>
-        </div>
-
-        <aside class="hero-side">
-          <div class="steel-plate">
-            <p class="module-title">Start here</p>
-            <div class="signal"><span>Ideal for</span><strong>Beginners</strong></div>
-            <div class="signal"><span>Formats</span><strong>In-gym + online</strong></div>
-            <div class="signal"><span>Focus</span><strong>Programming + technique</strong></div>
-            <div class="signal"><span>Method</span><strong>Sustainable + balanced</strong></div>
-          </div>
-
-          <div class="steel-plate">
-            <p class="module-title">Why clients trust this</p>
-            <div class="signal"><span>Experience</span><strong>10+ years</strong></div>
-            <div class="signal"><span>Background</span><strong>All ages + body types</strong></div>
-            <div class="signal"><span>Disciplines</span><strong>MA / Dance / KB / PL / SM</strong></div>
-          </div>
-
-          <div class="steel-plate">
-            <p class="module-title">What coaching feels like</p>
-            <p>
-              No experience needed. The goal is to help you build strength without feeling lost, overwhelmed, or out of place.
-            </p>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="approach">
-      <div class="wrap">
-        <div class="quote-panel">
-          <p class="mini-label">Philosophy</p>
-          <p class="quote">
-            This is the resistance against everything that would make us less. <strong>Training becomes the practice of rising.</strong>
-          </p>
-        </div>
-
-        <div class="metal-rule"></div>
-
-        <div class="section-head">
-          <p class="eyebrow">Why this works</p>
-          <h2>A stronger way to begin</h2>
           <p>
-            Most beginners do not need more hype. They need structure, priorities, and a coach who can help them focus on what actually counts in the gym.
+            I've been certified as NSCA-CPT, Kettlebell Sport Coach, CrossFit Level 2, and USAW Level 1.
           </p>
-        </div>
-
-        <div class="offer-grid">
-          <article class="panel">
-            <p class="mini-label">If you're new to training</p>
-            <h3>New to training</h3>
-            <p>
-              If you are unsure how to structure your workouts, what lifts matter most, or how to progress without second-guessing yourself, this was built for you.
-            </p>
-          </article>
-
-          <article class="panel">
-            <p class="mini-label">What starts to change</p>
-            <h3>Less noise, more progress</h3>
-            <p>
-              You get sustainable and balanced programming that focuses on the movements, habits, and decisions that actually move the needle.
-            </p>
-          </article>
-
-          <article class="panel">
-            <p class="mini-label">How the coaching feels</p>
-            <h3>Practical strength</h3>
-            <p>
-              Not a rigid system. Not empty motivation. Practical, real-world strength for every body — built through consistency, technique, and intelligent progression.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="services">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">Ways to work together</p>
-          <h2>Coaching modes</h2>
           <p>
-            Choose the format that fits your life now. Both paths are built to help you train with more confidence and direction.
+            What I've learned: the people who last — on the mountain, in the gym, in life — are the ones who build strength deliberately. Not the ones who just "stay active."
           </p>
-        </div>
-
-        <div class="grid-2">
-          <article class="panel">
-            <p class="mini-label">In-gym sessions</p>
-            <h3>Hands-on technique coaching</h3>
-            <p>
-              One hour in the gym to work on movement quality, diagnose issues, refine technique, and make smart recommendations about your programming.
-            </p>
-            <ul>
-              <li>Work directly on lifting technique</li>
-              <li>Diagnose sticking points and movement issues</li>
-              <li>Introduce new exercises when needed</li>
-              <li>Leave with clear programming direction</li>
-            </ul>
-          </article>
-
-          <article class="panel">
-            <p class="mini-label">Online coaching</p>
-            <h3>Programming and lifestyle support</h3>
-            <p>
-              Remote consults focused on exercise selection, training structure, and building a strength plan that fits your schedule, recovery, and actual life.
-            </p>
-            <ul>
-              <li>Programming built around your goals and level</li>
-              <li>Exercise selection that makes sense for your body</li>
-              <li>Lifestyle support to improve consistency</li>
-              <li>Clear priorities so you know what to focus on next</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="trust">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">Why train here</p>
-          <h2>Experience across disciplines</h2>
           <p>
-            Over a decade of coaching all ages and body types, shaped by a background that spans strength, movement, and performance.
+            <strong>Cardio keeps your heart working. Strength training keeps everything else working. You need both.</strong>
           </p>
         </div>
-
-        <div class="trust-grid">
-          <article class="panel">
-            <p class="mini-label">Background</p>
-            <h3>10+ years coaching</h3>
-            <p>
-              Experience working with beginners and a wide range of bodies means the coaching can adapt to the person in front of it.
-            </p>
-          </article>
-
-          <article class="panel">
-            <p class="mini-label">Training lineages</p>
-            <h3>Built from many systems</h3>
-            <p>
-              Martial arts, dance, CrossFit, kettlebell, powerlifting, and strongman all inform the way this coaching sees strength: as capability, not performance theater.
-            </p>
-          </article>
-
-          <article class="panel">
-            <p class="mini-label">Result</p>
-            <h3>Coaching that meets reality</h3>
-            <p>
-              You get a practical approach rooted in real movement, not one narrow ideology. Better fit usually means better consistency — and better consistency wins.
-            </p>
-          </article>
-        </div>
-
-        <div class="stats">
-          <div class="stat"><strong>Martial Arts</strong><span>Discipline, timing, body control</span></div>
-          <div class="stat"><strong>Dance</strong><span>Coordination, awareness, movement quality</span></div>
-          <div class="stat"><strong>Powerlifting</strong><span>Strength skill and progression</span></div>
-          <div class="stat"><strong>Strongman</strong><span>Real-world load and resilience</span></div>
-        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="booking">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">Booking</p>
-          <h2>Ready to rise?</h2>
-          <p>
-            If you are ready to stop guessing and start training with structure, confidence, and purpose, reserve your spot below.
-          </p>
+  <!-- ============================================ -->
+  <!-- HOW IT WORKS -->
+  <!-- ============================================ -->
+  <section class="section section--gray">
+    <div class="container--wide">
+      <h2 class="text-center">How to get started</h2>
+      <div class="divider divider--center mb-2"></div>
+
+      <div class="offerings">
+
+        <div class="offering">
+          <div class="offering__icon">🏋️</div>
+          <h3>In-Person Training</h3>
+          <p>One-on-one sessions at Trout Creek Recreation Center in Truckee. We build a program around your body, your goals, and your life — not a template.</p>
+          <ul>
+            <li>Single sessions and session packages</li>
+            <li>Beginner-friendly — no experience needed</li>
+            <li>We start where you are</li>
+          </ul>
+          <a href="mailto:matt@resistgravity.training" class="btn btn--dark btn--small">Contact Matt →</a>
         </div>
 
-        <div class="booking-grid">
-          <div class="booking-box">
-            <p class="mini-label">Choose your format</p>
-            <h3 style="margin:0.2rem 0 0.65rem;font-family:'Inter',system-ui,sans-serif;font-weight:800;font-size:2rem;line-height:1;letter-spacing:-0.03em;">Book your session</h3>
-            <p>
-              Choose in-gym coaching if you want hands-on feedback and technique work. Choose online coaching if you want structure, programming, and support from anywhere.
-            </p>
-            <div class="hero-actions" style="margin-top:1.2rem;">
-              <a class="btn btn-primary" href="#booking-space">Book In-Gym Session</a>
-              <a class="btn btn-secondary" href="#booking-space">Book Online Consult</a>
-            </div>
-          </div>
-
-          <div class="booking-box">
-            <p class="mini-label">Booking space</p>
-            <h3>Booking embed placeholder</h3>
-            <p>
-              Drop your calendar, booking link, contact form, or scheduling widget here.
-            </p>
-            <div class="booking-placeholder" id="booking-space">
-              <strong style="display:block;color:var(--neon);margin-bottom:0.55rem;">Replace this block with your scheduler</strong>
-              Example options:<br>
-              • Calendly embed<br>
-              • Squarespace scheduling block<br>
-              • Contact form<br>
-              • "Book a free consult" CTA
-            </div>
-          </div>
+        <div class="offering">
+          <div class="offering__icon">📱</div>
+          <h3>Online Training</h3>
+          <p>A monthly coaching package built around your schedule and equipment.</p>
+          <ul>
+            <li>Custom programming for your goals</li>
+            <li>App-based tracking via Everfit</li>
+            <li>Monthly video call to assess and adjust</li>
+          </ul>
+          <a href="#download" class="btn btn--dark btn--small">Get Your Starter Program →</a>
         </div>
 
-        <div class="footer-note">
-          <div>
-            <strong>Resistgravity.training</strong>
-            <p>
-              Strength training for beginners who are ready to resist what pulls them down.
-            </p>
-          </div>
-          <div class="tiny">In-gym sessions + online coaching</div>
-        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- OBJECTIONS -->
+  <!-- ============================================ -->
+  <section class="section">
+    <div class="container">
+      <h2>Common concerns</h2>
+      <div class="divider"></div>
+
+      <div class="objection">
+        <h3>"I don't have time."</h3>
+        <p>
+          Research shows that 1–2 sessions per week — about 30–45 minutes each — produce significant health benefits. You're already spending more time than that on things that don't protect your future self.
+        </p>
+      </div>
+
+      <div class="objection">
+        <h3>"I'm too old to start."</h3>
+        <p>
+          Studies in adults aged 75+ show that resistance training produces significant gains in muscle size and strength. It is literally never too late. The most frail individuals benefit the most.
+        </p>
+      </div>
+
+      <div class="objection">
+        <h3>"I'll get hurt."</h3>
+        <p>
+          Resistance training has an injury rate of 0.01 per 1,000 hours. That's lower than running, recreational walking, or playing with your kids. The real risk is not training — and losing the strength that keeps you safe.
+        </p>
+      </div>
+
+      <div class="objection">
+        <h3>"I already hike / ski / bike."</h3>
+        <p>
+          Cardiovascular fitness and muscular strength are different systems. Your cardio doesn't prevent sarcopenia. It doesn't protect your bones. It doesn't maintain your metabolic rate. You need both. Resistance training is the one most people skip — and the one that matters most as you age.
+        </p>
+      </div>
+
+      <div class="objection">
+        <h3>"I don't want to get bulky."</h3>
+        <p>
+          You won't. Building significant muscle mass requires years of dedicated training, a caloric surplus, and usually youth. What you will get: stronger bones, better metabolism, sharper cognition, more resilient joints, and the ability to keep doing what you love.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- DOWNLOAD / CTA -->
+  <!-- ============================================ -->
+  <section class="section section--dark" id="download">
+    <div class="container">
+      <h2 class="text-center">Start here.</h2>
+      <div class="divider divider--center mb-2"></div>
+
+      <div class="cta-block">
+        <h3>Download the free guide</h3>
+        <p>
+          <em>The Case for Strength Training</em> — the research-backed case for why resistance training is the single most important investment you can make in your long-term health. No fluff. No hype. Just the evidence.
+        </p>
+        <!-- Replace with your email service form action (Mailchimp, ConvertKit, etc.) -->
+        <form class="email-form" action="#" method="POST">
+          <input type="email" name="email" placeholder="Your email address" required>
+          <button type="submit" class="btn btn--primary">Send the Guide →</button>
+        </form>
+      </div>
+
+      <div class="cta-block">
+        <h3>Try a starter program</h3>
+        <p>
+          Get a beginner-friendly strength program on Everfit. Walk into any gym knowing exactly what to do — designed for people who've never lifted before.
+        </p>
+        <!-- Replace # with your Everfit starter program link -->
+        <a href="#" class="btn btn--outline">Get Your Starter Program →</a>
+      </div>
+
+      <div class="text-center mt-3">
+        <p class="small" style="color: #888;">
+          Resist Gravity · Truckee, CA<br>
+          <a href="mailto:matt@resistgravity.training" class="text-gold">matt@resistgravity.training</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================ -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Resist Gravity · Truckee, CA</p>
+      <p class="mt-1">resistgravity.training</p>
+    </div>
+  </footer>
+
 </body>
 </html>
