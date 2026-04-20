@@ -7,25 +7,25 @@
   <meta name="description" content="Strength training for beginners at resistgravity.training. In-gym sessions and online coaching built around sustainable programming, better technique, and practical strength for every body." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090b0f;
-      --bg-soft: #11141b;
-      --panel: rgba(17, 20, 27, 0.86);
-      --panel-2: rgba(24, 28, 38, 0.94);
-      --text: #edf2ff;
-      --muted: #b8c1d6;
-      --steel: #7f8796;
-      --line: rgba(154, 167, 198, 0.18);
-      --iron: #c8772e;
-      --iron-deep: #6b3713;
-      --neon: #6cf2d4;
-      --neon-2: #a855f7;
-      --danger: #ff5d7a;
-      --glow: 0 0 24px rgba(108, 242, 212, 0.22);
-      --iron-glow: 0 0 24px rgba(200, 119, 46, 0.18);
-      --radius: 22px;
+      --bg: #111316;
+      --bg-soft: #171a1f;
+      --panel: rgba(27, 30, 35, 0.94);
+      --panel-2: rgba(32, 36, 42, 0.98);
+      --text: #f3eee6;
+      --muted: #c8c0b3;
+      --steel: #8c9199;
+      --line: rgba(182, 191, 204, 0.14);
+      --iron: #c07a43;
+      --iron-deep: #72401a;
+      --neon: #79d7c3;
+      --danger: #ff6f79;
+      --glow: 0 0 18px rgba(121, 215, 195, 0.12);
+      --iron-glow: 0 0 18px rgba(192, 122, 67, 0.1);
+      --shadow: 0 24px 54px rgba(0, 0, 0, 0.28);
+      --radius: 18px;
       --max: 1180px;
     }
 
@@ -40,11 +40,11 @@
       font-family: 'Inter', system-ui, sans-serif;
       font-size: 17px;
       background:
-        radial-gradient(circle at top left, rgba(168, 85, 247, 0.18), transparent 28%),
-        radial-gradient(circle at top right, rgba(108, 242, 212, 0.12), transparent 24%),
-        linear-gradient(180deg, #07090d 0%, #090b0f 32%, #0c0f15 100%);
+        radial-gradient(circle at top right, rgba(121, 215, 195, 0.08), transparent 24%),
+        radial-gradient(circle at 18% 0%, rgba(192, 122, 67, 0.1), transparent 26%),
+        linear-gradient(180deg, #121418 0%, #14181d 34%, #101317 100%);
       color: var(--text);
-      line-height: 1.65;
+      line-height: 1.72;
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -60,22 +60,23 @@
 
     body::before {
       background:
-        linear-gradient(rgba(108, 242, 212, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(108, 242, 212, 0.045) 1px, transparent 1px);
-      background-size: 46px 46px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,0.7), transparent 92%);
+        linear-gradient(180deg, rgba(255,255,255,0.02), transparent 24%),
+        repeating-linear-gradient(
+          115deg,
+          rgba(255,255,255,0.018) 0,
+          rgba(255,255,255,0.018) 2px,
+          transparent 2px,
+          transparent 14px
+        );
+      opacity: 0.22;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.9), transparent 92%);
     }
 
     body::after {
       background:
-        repeating-linear-gradient(
-          135deg,
-          rgba(255,255,255,0.018) 0,
-          rgba(255,255,255,0.018) 2px,
-          transparent 2px,
-          transparent 10px
-        );
-      opacity: 0.4;
+        radial-gradient(circle at 50% 0%, rgba(121, 215, 195, 0.08), transparent 35%),
+        radial-gradient(circle at 50% 100%, rgba(192, 122, 67, 0.06), transparent 30%);
+      opacity: 0.65;
       z-index: -1;
     }
 
@@ -91,8 +92,8 @@
       top: 0;
       z-index: 20;
       backdrop-filter: blur(14px);
-      background: rgba(8, 10, 14, 0.74);
-      border-bottom: 1px solid rgba(108, 242, 212, 0.12);
+      background: rgba(17, 20, 24, 0.82);
+      border-bottom: 1px solid rgba(182, 191, 204, 0.11);
     }
 
     .topbar-inner {
@@ -111,17 +112,17 @@
 
     .eyebrow,
     .mini-label {
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-size: 0.74rem;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.06em;
+      font-size: 0.82rem;
+      font-weight: 700;
       color: var(--neon);
     }
 
     .brand strong {
       font-family: 'Oswald', sans-serif;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       font-size: 1.5rem;
       line-height: 1;
     }
@@ -140,7 +141,7 @@
     }
 
     .nav a {
-      color: var(--muted);
+      color: #d7d0c5;
       font-size: 1rem;
     }
 
@@ -153,31 +154,31 @@
       justify-content: center;
       gap: 0.65rem;
       border: 1px solid transparent;
-      border-radius: 999px;
-      padding: 0.95rem 1.35rem;
+      border-radius: 12px;
+      padding: 0.92rem 1.3rem;
       font-weight: 700;
       transition: 180ms ease;
       cursor: pointer;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, rgba(108, 242, 212, 0.18), rgba(168, 85, 247, 0.18));
+      background: linear-gradient(180deg, rgba(121, 215, 195, 0.14), rgba(121, 215, 195, 0.08)), #1f2a2a;
       color: var(--text);
-      border-color: rgba(108, 242, 212, 0.38);
-      box-shadow: var(--glow);
+      border-color: rgba(121, 215, 195, 0.3);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.16), var(--glow);
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      border-color: rgba(108, 242, 212, 0.62);
-      box-shadow: 0 0 32px rgba(108, 242, 212, 0.28);
+      border-color: rgba(121, 215, 195, 0.48);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.18), 0 0 14px rgba(121, 215, 195, 0.12);
     }
 
     .btn-secondary {
       background: rgba(255,255,255,0.02);
       color: var(--text);
-      border-color: rgba(200, 119, 46, 0.42);
-      box-shadow: var(--iron-glow);
+      border-color: rgba(192, 122, 67, 0.38);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12), var(--iron-glow);
     }
 
     .btn-secondary:hover {
@@ -204,14 +205,14 @@
     .booking-box,
     .footer-note {
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
-        linear-gradient(135deg, rgba(108,242,212,0.05), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008)),
+        linear-gradient(145deg, rgba(121,215,195,0.02), transparent 28%),
         var(--panel);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.04),
-        0 18px 60px rgba(0,0,0,0.35);
+        var(--shadow);
       position: relative;
       overflow: hidden;
     }
@@ -225,14 +226,8 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.045), transparent);
-      transform: translateX(-100%);
-      animation: sheen 9s linear infinite;
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), transparent 20%);
       pointer-events: none;
-    }
-
-    @keyframes sheen {
-      to { transform: translateX(100%); }
     }
 
     .hero-copy {
@@ -242,23 +237,32 @@
     .hero-title {
       font-family: 'Oswald', sans-serif;
       text-transform: uppercase;
-      font-size: clamp(3rem, 7vw, 6.4rem);
-      line-height: 0.92;
-      letter-spacing: 0.05em;
-      margin: 0.5rem 0 1rem;
+      font-size: clamp(2.85rem, 6.5vw, 5.3rem);
+      line-height: 0.94;
+      letter-spacing: 0.03em;
+      margin: 0.55rem 0 1rem;
       text-wrap: balance;
     }
 
     .hero-title .accent {
       color: var(--neon);
-      text-shadow: 0 0 22px rgba(108, 242, 212, 0.45);
+      text-shadow: 0 0 9px rgba(121, 215, 195, 0.16);
     }
 
     .subhead {
       font-size: 1.18rem;
       max-width: 45rem;
-      color: #dbe4fa;
-      margin-bottom: 1.5rem;
+      color: #ebe2d4;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-reassurance {
+      margin: 0 0 1.4rem;
+      max-width: 42rem;
+      padding-left: 0.95rem;
+      border-left: 3px solid rgba(192, 122, 67, 0.55);
+      color: #d7cdbf;
+      font-size: 1rem;
     }
 
     .hero-points {
@@ -269,17 +273,17 @@
     }
 
     .point {
-      padding: 0.9rem 1rem;
-      border: 1px solid rgba(108, 242, 212, 0.14);
-      border-radius: 16px;
-      background: rgba(255,255,255,0.02);
+      padding: 1rem 1.05rem;
+      border: 1px solid rgba(121, 215, 195, 0.12);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.008));
     }
 
     .point strong {
       display: block;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.14em;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--neon);
       margin-bottom: 0.4rem;
@@ -300,14 +304,14 @@
     }
 
     .steel-plate {
-      border-radius: 18px;
-      padding: 1.2rem;
+      border-radius: 14px;
+      padding: 1.35rem;
       background:
-        radial-gradient(circle at 15% 20%, rgba(255,255,255,0.06), transparent 20%),
-        linear-gradient(145deg, rgba(137, 146, 163, 0.18), rgba(74, 82, 97, 0.08) 40%, rgba(14,16,22,0.35)),
-        #11161f;
-      border: 1px solid rgba(200,119,46,0.2);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -10px 30px rgba(0,0,0,0.28);
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        linear-gradient(145deg, rgba(140, 145, 153, 0.12), rgba(45, 49, 55, 0.1) 42%, rgba(17,19,23,0.45)),
+        #161a20;
+      border: 1px solid rgba(192,122,67,0.16);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -8px 22px rgba(0,0,0,0.22);
       position: relative;
     }
 
@@ -315,13 +319,14 @@
     .steel-plate::after {
       content: "";
       position: absolute;
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #d9dde5, #465060 75%);
-      border: 1px solid rgba(255,255,255,0.15);
+      background: radial-gradient(circle at 30% 30%, #8b9198, #39404b 78%);
+      border: 1px solid rgba(255,255,255,0.06);
       top: 12px;
-      box-shadow: 0 1px 0 rgba(255,255,255,0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      opacity: 0.5;
     }
 
     .steel-plate::before { left: 12px; }
@@ -329,10 +334,10 @@
 
     .module-title {
       margin: 0 0 0.8rem;
-      font-family: 'Orbitron', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.03em;
       font-size: 0.9rem;
+      font-weight: 700;
       color: var(--iron);
     }
 
@@ -340,10 +345,14 @@
       display: flex;
       justify-content: space-between;
       gap: 1rem;
-      padding: 0.75rem 0;
+      padding: 0.9rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 1rem;
+    }
+
+    .signal span {
+      color: #d4ccbf;
     }
 
     .signal:last-child { border-bottom: none; }
@@ -364,11 +373,11 @@
 
     h2 {
       margin: 0.2rem 0 0.65rem;
-      font-family: 'Oswald', sans-serif;
-      text-transform: uppercase;
-      font-size: clamp(2rem, 4vw, 3.25rem);
-      line-height: 0.96;
-      letter-spacing: 0.05em;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
     }
 
     .section-head p,
@@ -417,10 +426,10 @@
 
     .panel h3 {
       margin: 0.3rem 0 0.65rem;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1.26rem;
+      font-weight: 700;
+      line-height: 1.15;
       color: var(--text);
     }
 
@@ -440,11 +449,11 @@
     }
 
     .stat {
-      padding: 0.9rem 1rem;
+      padding: 0.95rem 1rem;
       min-width: 150px;
-      border-radius: 16px;
+      border-radius: 14px;
       background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(168,85,247,0.14);
+      border: 1px solid rgba(121,215,195,0.11);
     }
 
     .stat strong {
@@ -457,11 +466,12 @@
     }
 
     .metal-rule {
-      height: 10px;
-      margin: 2rem 0 0.5rem;
+      height: 6px;
+      margin: 2rem 0 0.75rem;
       border-radius: 999px;
-      background: linear-gradient(90deg, rgba(200,119,46,0.02), rgba(200,119,46,0.7), rgba(108,242,212,0.8), rgba(200,119,46,0.02));
-      box-shadow: var(--iron-glow);
+      background: linear-gradient(90deg, rgba(192,122,67,0), rgba(192,122,67,0.5), rgba(121,215,195,0.45), rgba(192,122,67,0));
+      box-shadow: none;
+      opacity: 0.85;
     }
 
     .booking-box {
@@ -472,8 +482,8 @@
     .booking-placeholder {
       margin-top: 1rem;
       padding: 1.25rem;
-      border-radius: 18px;
-      border: 1px dashed rgba(108, 242, 212, 0.34);
+      border-radius: 14px;
+      border: 1px dashed rgba(121, 215, 195, 0.26);
       background: rgba(255,255,255,0.02);
       color: var(--muted);
     }
@@ -491,12 +501,12 @@
 
     .footer-note strong {
       display: block;
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       text-transform: uppercase;
       letter-spacing: 0.11em;
       color: var(--neon);
       margin-bottom: 0.35rem;
-      font-size: 0.84rem;
+      font-size: 0.8rem;
     }
 
     .tiny {
@@ -587,6 +597,9 @@
           <p class="subhead">
             Strength training for beginners who want a clear plan, better technique, and sustainable progress — in the gym or online.
           </p>
+          <p class="hero-reassurance">
+            No experience needed — just a clear place to start, practical coaching, and a plan you can actually follow.
+          </p>
           <p>
             Welcome to the resistance against everything that would drag us down, degrade us, or make us less. Here, training is more than noise and punishment. It is a way to stand up physically, mentally, and spiritually — and rise with intention.
           </p>
@@ -614,7 +627,7 @@
 
         <aside class="hero-side">
           <div class="steel-plate">
-            <p class="module-title">Signal / mission profile</p>
+            <p class="module-title">Start here</p>
             <div class="signal"><span>Ideal for</span><strong>Beginners</strong></div>
             <div class="signal"><span>Formats</span><strong>In-gym + online</strong></div>
             <div class="signal"><span>Focus</span><strong>Programming + technique</strong></div>
@@ -622,16 +635,16 @@
           </div>
 
           <div class="steel-plate">
-            <p class="module-title">Coach profile</p>
+            <p class="module-title">Why clients trust this</p>
             <div class="signal"><span>Experience</span><strong>10+ years</strong></div>
             <div class="signal"><span>Background</span><strong>All ages + body types</strong></div>
             <div class="signal"><span>Disciplines</span><strong>MA / Dance / KB / PL / SM</strong></div>
           </div>
 
           <div class="steel-plate">
-            <p class="module-title">Core belief</p>
+            <p class="module-title">What coaching feels like</p>
             <p>
-              We are here to do more. We are here to say yes, we will rise. And we have friends everywhere.
+              No experience needed. The goal is to help you build strength without feeling lost, overwhelmed, or out of place.
             </p>
           </div>
         </aside>
@@ -650,7 +663,7 @@
         <div class="metal-rule"></div>
 
         <div class="section-head">
-          <p class="eyebrow">Why this converts</p>
+          <p class="eyebrow">Why this works</p>
           <h2>A stronger way to begin</h2>
           <p>
             Most beginners do not need more hype. They need structure, priorities, and a coach who can help them focus on what actually counts in the gym.
@@ -659,7 +672,7 @@
 
         <div class="offer-grid">
           <article class="panel">
-            <p class="mini-label">01 / Who this is for</p>
+            <p class="mini-label">If you're new to training</p>
             <h3>New to training</h3>
             <p>
               If you are unsure how to structure your workouts, what lifts matter most, or how to progress without second-guessing yourself, this was built for you.
@@ -667,7 +680,7 @@
           </article>
 
           <article class="panel">
-            <p class="mini-label">02 / What changes</p>
+            <p class="mini-label">What starts to change</p>
             <h3>Less noise, more progress</h3>
             <p>
               You get sustainable and balanced programming that focuses on the movements, habits, and decisions that actually move the needle.
@@ -675,7 +688,7 @@
           </article>
 
           <article class="panel">
-            <p class="mini-label">03 / What it feels like</p>
+            <p class="mini-label">How the coaching feels</p>
             <h3>Practical strength</h3>
             <p>
               Not a rigid system. Not empty motivation. Practical, real-world strength for every body — built through consistency, technique, and intelligent progression.
@@ -784,8 +797,8 @@
 
         <div class="booking-grid">
           <div class="booking-box">
-            <p class="mini-label">Primary call to action</p>
-            <h3 style="margin:0.2rem 0 0.65rem;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.05em;font-size:2rem;line-height:1;">Book your session</h3>
+            <p class="mini-label">Choose your format</p>
+            <h3 style="margin:0.2rem 0 0.65rem;font-family:'Inter',system-ui,sans-serif;font-weight:800;font-size:2rem;line-height:1;letter-spacing:-0.03em;">Book your session</h3>
             <p>
               Choose in-gym coaching if you want hands-on feedback and technique work. Choose online coaching if you want structure, programming, and support from anywhere.
             </p>
@@ -796,7 +809,7 @@
           </div>
 
           <div class="booking-box">
-            <p class="mini-label">Space reserved</p>
+            <p class="mini-label">Booking space</p>
             <h3>Booking embed placeholder</h3>
             <p>
               Drop your calendar, booking link, contact form, or scheduling widget here.
